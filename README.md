@@ -1,4 +1,5 @@
 # go-fp
+![example workflow](https://github.com/j-dumbell/go-fp/actions/workflows/test-build.yml/badge.svg?branch=main)
 
 A Golang library to enable functional programming (FP).  Includes utilities for function composition, currying,
 collection functions, and fp-friendly equivalents of standard library functions.
