@@ -94,6 +94,31 @@ var result = fp.MapI(func(i int, index int) int {
 })(uints)
 ```
 
+### `Filter`
+Creates a new slice by filtering the elements in another slice.  The provided filter function is called on each element.
+```go
+func isHello(s string) bool {
+    return s == "hello"
+}
+
+var words = []string{"foo", "hello", "world"}
+
+// []string{"hello"}
+var onlyHello = fp.Filter(isHello)(words)
+```
+
+### `FilterI`
+As-per `Filter`, but the provided callback function must an include a 2nd argument for the index of the slice element.
+```go
+var nums = []int{3, -1, -4}
+
+// []int{3, -1}
+var positiveNumbers = fp.FilterI(func(i, j int) bool {
+    return i + j >= 0
+})(nums)
+
+```
+
 ## FP-friendly standard library functions 
 Standard library equivalents are auto-curried and data last.  The package structure matches the standard library
 structure, with the package name suffixed with `fp`.  The FP-friendly functions have exactly the same names.
