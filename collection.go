@@ -42,3 +42,27 @@ func Filter[A any](fn func(A) bool) func([]A) []A {
 	}
 	return FilterI(fnI)
 }
+
+// FlatMap creates a new slice by transforming and flattening another slice by calling the
+// provided callback on each element.
+func FlatMap[A, B any](fn func(A) []B) func([]A) []B {
+	return func(arr []A) []B {
+		var mapped []B
+		for _, a := range arr {
+			mapped = append(mapped, fn(a)...)
+		}
+		return mapped
+	}
+}
+
+// FlatMapI creates a new slice by transforming and flattening another slice by calling the
+// provided callback on each element.  The callback takes a 2nd argument for the slice index.
+func FlatMapI[A, B any](fn func(A, int) []B) func([]A) []B {
+	return func(arr []A) []B {
+		var mapped []B
+		for i, a := range arr {
+			mapped = append(mapped, fn(a, i)...)
+		}
+		return mapped
+	}
+}
